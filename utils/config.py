@@ -64,7 +64,7 @@ class Configuration:
     def STRIPE_FREE_TIER_ID(self) -> str:
         if self.ENV_MODE == EnvMode.STAGING:
             return self.STRIPE_FREE_TIER_ID_STAGING
-        return self.STRIPE_FREE_TIER_ID_PROD
+        return self.STRIPE_TIER_200_1000_ID_PROD
     
     @property
     def STRIPE_TIER_2_20_ID(self) -> str:
