@@ -1,23 +1,15 @@
-# syntax=docker/dockerfile:1.4  # Important: Ensure BuildKit syntax is used
 FROM ghcr.io/astral-sh/uv:python3.11-alpine
 
 ENV ENV_MODE production
 WORKDIR /app
 
+ARG RAILWAY_SERVICE_ID
+
 # Install Python dependencies
 COPY pyproject.toml uv.lock ./
 ENV UV_LINK_MODE=copy
 
-# Define the build-time argument for the SERVICE ID
-# Railway explicitly documents passing RAILWAY_SERVICE_ID as a build-arg
-ARG RAILWAY_SERVICE_ID
-
-# This line should now print the service ID in your build logs
-RUN echo "Railway Service ID (from ARG): $RAILWAY_SERVICE_ID"
-
-# Use the SERVICE ID in the cache mount target path
-RUN --mount=type=cache,id=s/$RAWAY_SERVICE_ID-/root/.cache/uv,target=/root/.cache/uv uv sync --locked --quiet
-
+RUN --mount=type=cache,id=s/$RAILWAY_SERVICE_ID-/root/.cache/uv,target=/root/.cache/uv uv sync --locked --quiet
 
 # Copy application code
 COPY . .
