@@ -4,7 +4,7 @@ ENV ENV_MODE production
 WORKDIR /app
 
 ARG RAILWAY_SERVICE_ID
-echo $RAILWAY_SERVICE_ID
+RUN echo $RAILWAY_SERVICE_ID
 
 # Install Python dependencies
 COPY pyproject.toml uv.lock ./
