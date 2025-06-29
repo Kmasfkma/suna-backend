@@ -4,7 +4,6 @@ ENV ENV_MODE production
 WORKDIR /app
 
 ARG RAILWAY_SERVICE_ID
-ENV RAILWAY_SERVICE_ID
 echo $RAILWAY_SERVICE_ID
 
 # Install Python dependencies
