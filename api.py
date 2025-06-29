@@ -25,7 +25,7 @@ from services import transcription as transcription_api
 from services.mcp_custom import discover_custom_tools
 import sys
 from services import email_api
-
+import os
 
 load_dotenv()
 
@@ -121,7 +121,7 @@ async def log_requests_middleware(request: Request, call_next):
         raise
 
 # Define allowed origins based on environment
-allowed_origins = ["https://www.suna.so", "https://suna.so", "http://localhost:3000", os.getenv("NEXT_PUBLIC_URL")]
+allowed_origins = ["https://www.suna.so", "https://suna.so", os.getenv("NEXT_PUBLIC_URL")]
 allow_origin_regex = None
 
 # Add staging-specific origins
