@@ -3,10 +3,12 @@ FROM ghcr.io/astral-sh/uv:python3.11-alpine
 ENV ENV_MODE production
 WORKDIR /app
 
+ARG RAILWAY_PROJECT_ID
+
 # Install Python dependencies
 COPY pyproject.toml uv.lock ./
 ENV UV_LINK_MODE=copy
-RUN --mount=type=cache,id=s/d1e69c02-da3a-40f5-b441-dc2c7090aa51-/root/.cache/uv,target=/root/.cache/uv uv sync --locked --quiet
+RUN --mount=type=cache,id=s/$RAILWAY_PROJECT_ID-/root/.cache/uv,target=/root/.cache/uv uv sync --locked --quiet
 
 # Copy application code
 COPY . .
