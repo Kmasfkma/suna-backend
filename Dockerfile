@@ -5,6 +5,7 @@ WORKDIR /app
 
 ARG RAILWAY_PROJECT_ID
 
+RUN echo $RAILWAY_PROJECT_ID
 # Install Python dependencies
 COPY pyproject.toml uv.lock ./
 ENV UV_LINK_MODE=copy
