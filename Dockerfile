@@ -3,7 +3,8 @@ FROM ghcr.io/astral-sh/uv:python3.11-alpine
 ENV ENV_MODE production
 WORKDIR /app
 
-
+ARG RAILWAY_SERVICE_ID
+ENV SERVICE_ID=$RAILWAY_SERVICE_ID
 
 RUN echo $RAILWAY_SERVICE_ID
 
@@ -11,9 +12,7 @@ RUN echo $RAILWAY_SERVICE_ID
 COPY pyproject.toml uv.lock ./
 ENV UV_LINK_MODE=copy
 
-ARG RAILWAY_SERVICE_ID
-ENV SERVICE_ID=${RAILWAY_SERVICE_ID}
-RUN --mount=type=cache,id=s/${SERVICE_ID}-/root/.cache/uv,target=/root/.cache/uv uv sync --locked --quiet
+RUN --mount=type=cache,id=s/b1d29d5f-69d0-40cc-bb64-bfabdb5063a0-/root/.cache/uv,target=/root/.cache/uv uv sync --locked --quiet
 
 # Copy application code
 COPY . .
