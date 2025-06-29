@@ -11,7 +11,7 @@ echo $RAILWAY_SERVICE_ID
 COPY pyproject.toml uv.lock ./
 ENV UV_LINK_MODE=copy
 
-RUN --mount=type=cache,id=s/b2de3338-16d2-4d47-8705-7aa215102249-/root/.cache/uv,target=/root/.cache/uv uv sync --locked --quiet
+RUN --mount=type=cache,id=s/b1d29d5f-69d0-40cc-bb64-bfabdb5063a0-/root/.cache/uv,target=/root/.cache/uv uv sync --locked --quiet
 
 # Copy application code
 COPY . .
