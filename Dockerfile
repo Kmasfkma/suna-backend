@@ -4,12 +4,14 @@ ENV ENV_MODE production
 WORKDIR /app
 
 ARG RAILWAY_SERVICE_ID
+ENV RAILWAY_SERVICE_ID
+echo $RAILWAY_SERVICE_ID
 
 # Install Python dependencies
 COPY pyproject.toml uv.lock ./
 ENV UV_LINK_MODE=copy
 
-RUN --mount=type=cache,id=s/$RAILWAY_SERVICE_ID-/root/.cache/uv,target=/root/.cache/uv uv sync --locked --quiet
+RUN --mount=type=cache,id=s/b2de3338-16d2-4d47-8705-7aa215102249-/root/.cache/uv,target=/root/.cache/uv uv sync --locked --quiet
 
 # Copy application code
 COPY . .
